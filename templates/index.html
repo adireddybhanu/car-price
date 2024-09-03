@@ -3,62 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Price Predictor</title>
+    <title>Car Price Prediction</title>
     <style>
         body {
+            background-image: url('https://i.pinimg.com/originals/15/8b/3b/158b3b13fb3fe51260698ddf4879af2b.gif'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
-            background: url('https://media.giphy.com/media/l3q2ObAk4qx9jmuAM/giphy.gif') no-repeat center center fixed;
-            background-size: cover;
             font-family: Arial, sans-serif;
-            color: white;
+            color: #fff;
         }
-        .header {
+
+        .container {
+            text-align: center;
             background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 600px;
         }
-        .header a {
-            margin: 0 15px;
-            color: white;
-            text-decoration: none;
-            font-size: 20px;
-            transition: color 0.3s ease;
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
         }
-        .header a:hover {
-            color: #ff4500;
-        }
-        .main-content {
-            text-align: center;
-            padding-top: 20%;
-        }
-        .main-button {
+
+        .button {
             display: inline-block;
-            margin: 20px;
-            padding: 20px 40px;
-            font-size: 24px;
+            background-color: #ff4500;
             color: white;
-            background: url('https://media.tenor.com/kDRF6HONllUAAAAM/fireball-flame-ball.gif') no-repeat center center;
-            background-size: cover;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            padding: 15px 30px;
+            margin: 10px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
         }
-        .main-button:hover {
-            transform: scale(1.1);
+
+        .button:hover {
+            background-color: #e03e00;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <a href="/">Home</a>
-        <a href="/car-analysis">Car Analysis</a>
-        <a href="/price-predict">Price Predict</a>
-        <a href="/contact">Contact Us</a>
-    </div>
-    <div class="main-content">
-        <a href="/car-analysis" class="main-button">Car Analysis</a>
-        <a href="/price-predict" class="main-button">Price Predict</a>
+    <div class="container">
+        <h1>Welcome to Car Price Prediction</h1>
+        <a href="/analysis" class="button">Price Analysis</a>
+        <a href="/predict" class="button">Price Predict</a>
     </div>
 </body>
 </html>
