@@ -3,134 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Price Prediction</title>
+    <title>Car Price Predictor</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: url('https://media.giphy.com/media/l3q2ObAk4qx9jmuAM/giphy.gif') no-repeat center center fixed;
+            background: url('https://melodiloo.wordpress.com/wp-content/uploads/2017/10/audi_car_gif_by_jessica_miles-d75fypz.gif') no-repeat center center fixed;
             background-size: cover;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #fff;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 20px;
+            font-weight: bold;
         }
         .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
         }
-        h2 {
+        .form-box {
+            background-color: rgba(255, 255, 255, 0.7); /* Make background transparent */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            width: 100%;
+        }
+        .form-box h2 {
             text-align: center;
-            font-size: 28px;
             margin-bottom: 20px;
         }
         .form-group {
             margin-bottom: 15px;
         }
-        label {
+        .form-group label {
             display: block;
-            font-weight: bold;
             margin-bottom: 5px;
+            font-weight: bold;
         }
-        input, select {
+        .form-group select, .form-group input {
             width: 100%;
             padding: 10px;
-            box-sizing: border-box;
-            border: none;
             border-radius: 5px;
-            font-size: 16px;
-            background-color: #333;
-            color: #fff;
-            transition: background-color 0.3s ease;
+            border: 1px solid #ccc;
         }
-        input:focus, select:focus {
-            background-color: #444;
+        .form-group select:focus, .form-group input:focus {
+            outline: none;
+            border-color: #555;
         }
-        .predict-button {
+        .btn {
+            display: block;
             width: 100%;
-            padding: 12px 0;
-            background-color: #555;
-            color: white;
+            padding: 15px;
+            margin-top: 20px;
             border: none;
-            border-radius: 5px;
+            background-color: #ff4500;
+            color: white;
             font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
+            border-radius: 5px;
             transition: background-color 0.3s ease;
         }
-        .predict-button:hover {
-            background-color: #666;
+        .btn:hover {
+            background-color: #e43e00;
+        }
+        .error, .prediction {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+
+<header>
+    <a href="/">Home</a>
+    <a href="/analysis">Analysis</a>
+    <a href="/predict">Predict</a>
+    <a href="/contactus">Contact Us</a>
+</header>
+
+<div class="container">
+    <div class="form-box">
         <h2>Predict Car Price</h2>
         <form action="/predict" method="POST">
             <div class="form-group">
-                <label for="car_name">Car Name:</label>
-                <select name="car_name" id="car_name">
-                    {% for car in car_names %}
-                        <option value="{{ car }}">{{ car }}</option>
+                <label for="car_name">Car Name</label>
+                <select id="car_name" name="car_name" required>
+                    <option value="">Select Car Name</option>
+                    {% for name in car_names %}
+                        <option value="{{ name }}">{{ name }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
-                <label for="model_name">Model Name:</label>
-                <select name="model_name" id="model_name">
+                <label for="model_name">Model Name</label>
+                <select id="model_name" name="model_name" required>
+                    <option value="">Select Model Name</option>
                     {% for model in models %}
                         <option value="{{ model }}">{{ model }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
-                <label for="transmission_type">Transmission Type:</label>
-                <select name="transmission_type" id="transmission_type">
+                <label for="transmission_type">Transmission Type</label>
+                <select id="transmission_type" name="transmission_type" required>
+                    <option value="">Select Transmission Type</option>
                     {% for transmission in transmissions %}
                         <option value="{{ transmission }}">{{ transmission }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
-                <label for="seller_type">Seller Type:</label>
-                <select name="seller_type" id="seller_type">
+                <label for="seller_type">Seller Type</label>
+                <select id="seller_type" name="seller_type" required>
+                    <option value="">Select Seller Type</option>
                     {% for seller in sellers %}
                         <option value="{{ seller }}">{{ seller }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
-                <label for="fuel_type">Fuel Type:</label>
-                <select name="fuel_type" id="fuel_type">
+                <label for="fuel_type">Fuel Type</label>
+                <select id="fuel_type" name="fuel_type" required>
+                    <option value="">Select Fuel Type</option>
                     {% for fuel in fuels %}
                         <option value="{{ fuel }}">{{ fuel }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
-                <label for="max_power">Max Power (in HP):</label>
-                <input type="number" name="max_power" id="max_power" required>
+                <label for="max_power">Max Power (HP)</label>
+                <input type="number" id="max_power" name="max_power" min="50" max="600" required>
             </div>
             <div class="form-group">
-                <label for="engine">Engine (in CC):</label>
-                <input type="number" name="engine" id="engine" required>
+                <label for="engine_size">Engine Size (CC)</label>
+                <input type="number" id="engine_size" name="engine_size" min="500" max="5000" required>
             </div>
             <div class="form-group">
-                <label for="mileage">Mileage (in KMPL):</label>
-                <input type="number" name="mileage" id="mileage" step="0.1" required>
+                <label for="mileage">Mileage (KMPL)</label>
+                <input type="number" id="mileage" name="mileage" step="0.01" min="5" max="40" required>
             </div>
             <div class="form-group">
-                <label for="vehicle_age">Vehicle Age (in Years):</label>
-                <input type="number" name="vehicle_age" id="vehicle_age" required>
+                <label for="vehicle_age">Vehicle Age (Years)</label>
+                <input type="number" id="vehicle_age" name="vehicle_age" min="0" max="25" required>
             </div>
             <div class="form-group">
-                <label for="km_driven">Kilometers Driven:</label>
-                <input type="number" name="km_driven" id="km_driven" required>
+                <label for="km_driven">Kilometers Driven (KM)</label>
+                <input type="number" id="km_driven" name="km_driven" min="0" max="500000" required>
             </div>
-            <button type="submit" class="predict-button">Predict Price</button>
+            <button type="submit" class="btn">Predict</button>
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
+            {% if prediction %}
+                <div class="prediction">{{ prediction }}</div>
+            {% endif %}
         </form>
     </div>
+</div>
+
 </body>
 </html>
